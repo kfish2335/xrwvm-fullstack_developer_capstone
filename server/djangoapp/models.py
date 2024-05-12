@@ -34,6 +34,7 @@ class CarMake(models.Model):
 
 
 class CarModel(models.Model):
+    """Class representing a CarModels"""
     choice = [
         ("Sedan", "Sedan"),
         ("SUV", "SUV"),
@@ -46,11 +47,11 @@ class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     year = models.IntegerField(
-        default=2023, validators=[MaxValueValidator(2023), 
+        default=2023, validators=[MaxValueValidator(2023),
                                   MinValueValidator(2015)
                                   ]
     )
     type = models.CharField(max_length=10, choices=choice, default="SUV")
 
     def __str__(self):
-        return self.name  # Return the name as the string representation
+        return str(self.name)  # Return the name as the string representation
